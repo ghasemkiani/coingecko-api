@@ -47,6 +47,15 @@ class CoinGecko extends Obj {
 			this.coinData = this.coinList.reduce((map, item) => (map[item.id] = item, map), {});
 		}
 	}
+	async toUpdate() {
+		await this.toGetIds();
+	}
+	async toReset() {
+		this.coinList = null;
+		this.coinData = null;
+		this.ids = null;
+		await this.toUpdate();
+	}
 	async toGetPrice(symbol) {
 		await this.toGetIds();
 		let id = this.getId(symbol);
@@ -62,13 +71,22 @@ class CoinGecko extends Obj {
 		let vs_currencies = "usd";
 		let ids = Object.keys(mapIdSymbol).join(",");
 		let result = await this.client.simplePrice({vs_currencies, ids});
-		let prices = Object.keys(mapIdSymbol).reduce((map, id) => (map[mapIdSymbol[id]] = result[id].usd, map), {});
+		let prices = Object.keys(mapIdSymbol).reduce((map, id) => (map[mapIdSymbol[id]] = result[id]?.usd || 0, map), {});
 		return prices;
 	}
 }
 cutil.extend(CoinGecko.prototype, {
 	defIds: {
 		"shr": "sharering",
+		"cake": "pancakeswap-token",
+		"toncoin": "telegram-open-network",
+		"rune": "thorchain",
+		"bull": "3x-long-bitcoin-token",
+		"bear": "3x-short-bitcoin-token",
+		"vrab": "verasity",
+		"und": "unification",
+		"kp3rb": "keep3rv1",
+		"bopen": "open-governance-token",
 	},
 	_ids: null,
 	coinList: null,
