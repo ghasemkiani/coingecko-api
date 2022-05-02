@@ -1,0 +1,28 @@
+{
+  "name": "@ghasemkiani/coingecko-api",
+  "version": "1.0.0",
+  "description": "Crypto data from CoinGecko",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ghasemkiani/coingecko-api.git"
+  },
+  "keywords": [
+    "cryptocurrency",
+    "price"
+  ],
+  "author": "Ghasem Kiani",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ghasemkiani/coingecko-api/issues"
+  },
+  "homepage": "https://github.com/ghasemkiani/coingecko-api#readme",
+  "dependencies": {
+    "@ghasemkiani/base": "github:ghasemkiani/base",
+    "coingecko-api-v3": "^0.0.13"
+  }
+}
