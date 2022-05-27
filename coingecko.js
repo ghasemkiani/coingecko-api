@@ -96,6 +96,8 @@ cutil.extend(CoinGecko.prototype, {
 		"bopen": "open-governance-token",
 		"pizza": "pizzaswap",
 		"btt": "bittorrent-old",
+		"ust_": "wrapped-ust",
+		"ust": "terrausd-wormhole",
 	},
 	_ids: null,
 	coinList: null,
