@@ -2,6 +2,7 @@ import {CoinGeckoClient} from "coingecko-api-v3";
 
 import {cutil} from "@ghasemkiani/base";
 import {Obj} from "@ghasemkiani/base";
+import {Axis} from "@ghasemkiani/base-utils";
 
 class CoinGecko extends Obj {
 	get ids() {
