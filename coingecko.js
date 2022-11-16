@@ -80,7 +80,7 @@ class CoinGecko extends Obj {
 		let vs_currency = "usd";
 		let from = cutil.asInteger(new Date(fromDate).getTime() / 1000);
 		let to = cutil.asInteger(new Date(toDate).getTime() / 1000);
-		let {prices: data} = await cg.client.coinIdMarketChartRange({id, vs_currency, from, to});
+		let {prices: data} = await this.client.coinIdMarketChartRange({id, vs_currency, from, to});
 		let axis = new Axis({data});
 		axis.sort();
 		return axis;
