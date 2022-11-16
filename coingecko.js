@@ -74,6 +74,17 @@ class CoinGecko extends Obj {
 		let prices = Object.keys(mapIdSymbol).reduce((map, id) => (map[mapIdSymbol[id]] = result[id]?.usd || 0, map), {});
 		return prices;
 	}
+	async toGetPriceAxis(symbol, fromDate, toDate) {
+		await this.toGetIds();
+		let id = this.getId(symbol);
+		let vs_currency = "usd";
+		let from = cutil.asInteger(new Date(fromDate).getTime() / 1000);
+		let to = cutil.asInteger(new Date(toDate).getTime() / 1000);
+		let {prices: data} = await cg.client.coinIdMarketChartRange({id, vs_currency, from, to});
+		let axis = new Axis({data});
+		axis.sort();
+		return axis;
+	}
 }
 cutil.extend(CoinGecko.prototype, {
 	defIds: {
