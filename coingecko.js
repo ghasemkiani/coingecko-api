@@ -48,7 +48,10 @@ class CoinGecko extends Obj {
 			this.coinData = this.coinList.reduce((map, item) => (map[item.id] = item, map), {});
 		}
 	}
-	async toUpdate() {
+	async toUpdate(force = false) {
+		if (force) {
+			this.coinList = null;
+		}
 		await this.toGetIds();
 	}
 	async toReset() {
