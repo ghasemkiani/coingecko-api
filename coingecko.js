@@ -5,6 +5,40 @@ import {Obj} from "@ghasemkiani/base";
 import {Axis} from "@ghasemkiani/base-utils";
 
 class CoinGecko extends Obj {
+	static {
+		cutil.extend(this.prototype, {
+			defIds: {
+				"sand": "the-sandbox",
+				"shr": "sharering",
+				"cake": "pancakeswap-token",
+				"toncoin": "telegram-open-network",
+				"rune": "thorchain",
+				"luna": "terra-luna",
+				"bull": "3x-long-bitcoin-token",
+				"bear": "3x-short-bitcoin-token",
+				"ethbull": "3x-long-ethereum-token",
+				"ethbear": "3x-short-ethereum-token",
+				"eosbull": "3x-long-eos-token",
+				"eosbear": "3x-short-eos-token",
+				"xrpbull": "3x-long-xrp-token",
+				"xrpbear": "3x-short-xrp-token",
+				"vrab": "verasity",
+				"und": "unification",
+				"kp3rb": "keep3rv1",
+				"bopen": "open-governance-token",
+				"pizza": "pizzaswap",
+				"btt": "bittorrent-old",
+				"ust_": "wrapped-ust",
+				"ust": "terrausd-wormhole",
+			},
+			_ids: null,
+			coinList: null,
+			coinData: null,
+			_client: null,
+			timeout: 10000,
+			autoRetry: true,
+		});
+	}
 	get ids() {
 		if (!this._ids) {
 			this._ids = {};
@@ -90,36 +124,5 @@ class CoinGecko extends Obj {
 		return axis;
 	}
 }
-cutil.extend(CoinGecko.prototype, {
-	defIds: {
-		"shr": "sharering",
-		"cake": "pancakeswap-token",
-		"toncoin": "telegram-open-network",
-		"rune": "thorchain",
-		"luna": "terra-luna",
-		"bull": "3x-long-bitcoin-token",
-		"bear": "3x-short-bitcoin-token",
-		"ethbull": "3x-long-ethereum-token",
-		"ethbear": "3x-short-ethereum-token",
-		"eosbull": "3x-long-eos-token",
-		"eosbear": "3x-short-eos-token",
-		"xrpbull": "3x-long-xrp-token",
-		"xrpbear": "3x-short-xrp-token",
-		"vrab": "verasity",
-		"und": "unification",
-		"kp3rb": "keep3rv1",
-		"bopen": "open-governance-token",
-		"pizza": "pizzaswap",
-		"btt": "bittorrent-old",
-		"ust_": "wrapped-ust",
-		"ust": "terrausd-wormhole",
-	},
-	_ids: null,
-	coinList: null,
-	coinData: null,
-	_client: null,
-	timeout: 10000,
-	autoRetry: true,
-});
 
 export {CoinGecko};
