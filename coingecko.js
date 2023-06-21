@@ -13,7 +13,7 @@ class CoinGecko extends Obj {
 				"cake": "pancakeswap-token",
 				"toncoin": "telegram-open-network",
 				"rune": "thorchain",
-				"luna": "terra-luna",
+				// "luna": "terra-luna",
 				"bull": "3x-long-bitcoin-token",
 				"bear": "3x-short-bitcoin-token",
 				"ethbull": "3x-long-ethereum-token",
@@ -27,9 +27,35 @@ class CoinGecko extends Obj {
 				"kp3rb": "keep3rv1",
 				"bopen": "open-governance-token",
 				"pizza": "pizzaswap",
-				"btt": "bittorrent-old",
+				"bttold": "bittorrent-old",
 				"ust_": "wrapped-ust",
 				"ust": "terrausd-wormhole",
+				"ustc": "terrausd",
+				
+				"arb": "arbitrum",
+				"busd": "binance-usd",
+				"btc": "bitcoin",
+				"eth": "ethereum",
+				"bnb": "binancecoin",
+				"matic": "matic-network",
+				"avax": "avalanche-2",
+				"ftm": "fantom",
+				"ada": "cardano",
+				"dot": "polkadot",
+				"link": "chainlink",
+				"atom": "cosmos",
+				"lunc": "terra-luna",
+				"luna_": "terra-luna",
+				"luna": "terra-luna-2",
+				"sol": "solana",
+				"steem": "steem",
+				"trx": "tron",
+				"btt": "bittorrent",
+				"doge": "dogecoin",
+				"xrp": "ripple",
+				"ltc": "litecoin",
+				"bch": "bitcoin-cash",
+				"ftt": "ftx-token",
 			},
 			_ids: null,
 			coinList: null,
@@ -41,8 +67,7 @@ class CoinGecko extends Obj {
 	}
 	get ids() {
 		if (!this._ids) {
-			this._ids = {};
-			cutil.assign(this._ids, this.defIds);
+			this._ids = cutil.assign({}, this.defIds);
 		}
 		return this._ids;
 	}
@@ -100,7 +125,10 @@ class CoinGecko extends Obj {
 		let vs_currencies = "usd";
 		let ids = id;
 		let result = await this.client.simplePrice({vs_currencies, ids});
-		let price = result[id].usd;
+		let price = result?.[id]?.usd;
+		if (cutil.isNil(price)) {
+			throw new Error(`Could not get price for '${symbol}'`);
+		}
 		return price;
 	}
 	async toGetPrices(symbols) {
