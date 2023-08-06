@@ -1,6 +1,6 @@
 {
 	"name": "@ghasemkiani/coingecko-api",
-	"version": "1.0.9",
+	"version": "1.1.0",
 	"description": "Crypto data from CoinGecko",
 	"type": "module",
 	"main": "index.js",

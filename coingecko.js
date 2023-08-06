@@ -37,6 +37,7 @@ class CoinGecko extends Obj {
 				"btc": "bitcoin",
 				"eth": "ethereum",
 				"bnb": "binancecoin",
+				"crv": "curve-dao-token",
 				"matic": "matic-network",
 				"avax": "avalanche-2",
 				"ftm": "fantom",
