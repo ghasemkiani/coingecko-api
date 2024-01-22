@@ -24,6 +24,6 @@
 	"dependencies": {
 		"@ghasemkiani/base": "github:ghasemkiani/base",
 		"@ghasemkiani/base-utils": "github:ghasemkiani/base-utils",
-		"coingecko-api-v3": "^0.0.13"
+		"coingecko-api-v3": "^0.0.29"
 	}
 }

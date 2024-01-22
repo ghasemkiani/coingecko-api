@@ -3,7 +3,7 @@ import {CoinGecko} from "./coingecko.js";
 
 const iwcoingecko = {
 	defPrices: {
-		"SIM": 0.001,
+		"SIM": 0.004412905,
 	},
 	cgIds: {
 		"wmatic": "matic-network",
@@ -40,6 +40,14 @@ const iwcoingecko = {
 			this.prices[symbol] = await this.cg.toGetPrice(symbol);
 		}
 		return this.prices[symbol];
+	},
+	async toGetPrices(symbols) {
+		let syms = symbols.filter(symbol => !(symbol in this.prices));
+		if (syms.length > 0) {
+			let prices = await this.cg.toGetPrices(syms);
+			cutil.assign(this.prices, prices);
+		}
+		return symbols.reduce((s, symbol) => (s[symbol] = this.prices[symbol], s), {});
 	},
 };
 

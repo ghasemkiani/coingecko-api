@@ -11,6 +11,7 @@ class CoinGecko extends Obj {
 				"sand": "the-sandbox",
 				"shr": "sharering",
 				"cake": "pancakeswap-token",
+				"chz": "chiliz",
 				"toncoin": "telegram-open-network",
 				"rune": "thorchain",
 				// "luna": "terra-luna",
@@ -57,7 +58,9 @@ class CoinGecko extends Obj {
 				"ltc": "litecoin",
 				"bch": "bitcoin-cash",
 				"ftt": "ftx-token",
+				"toncoin": "the-open-network",
 			},
+			_apiKey: null,
 			_ids: null,
 			coinList: null,
 			coinData: null,
@@ -65,6 +68,15 @@ class CoinGecko extends Obj {
 			timeout: 10000,
 			autoRetry: true,
 		});
+	}
+	get apiKey() {
+		if (cutil.na(this._apiKey) && cutil.a(process.env.COINGECKO_APIKEY)) {
+			this._apiKey = process.env.COINGECKO_APIKEY;
+		}
+		return this._apiKey;
+	}
+	set apiKey(apiKey) {
+		this._apiKey = apiKey;
 	}
 	get ids() {
 		if (!this._ids) {
@@ -89,8 +101,9 @@ class CoinGecko extends Obj {
 	}
 	get client() {
 		if (!this._client) {
-			let {timeout, autoRetry} = this;
-			this._client = new CoinGeckoClient({timeout, autoRetry});
+			let {timeout, autoRetry, apiKey} = this;
+			this._client = new CoinGeckoClient({timeout, autoRetry}/* , apiKey */);
+			// this._client.apiKey = apiKey;
 		}
 		return this._client;
 	}
@@ -99,7 +112,7 @@ class CoinGecko extends Obj {
 	}
 	async toGetIds() {
 		if (!this.coinList) {
-			this.coinList = await this.client.coinList();
+			this.coinList = await this.client.coinList({x_cg_demo_api_key: this.apiKey});
 			for (let {id, symbol} of this.coinList) {
 				if (!this.hasId(symbol)) {
 					this.setId(symbol, id);
@@ -125,7 +138,7 @@ class CoinGecko extends Obj {
 		let id = this.getId(symbol);
 		let vs_currencies = "usd";
 		let ids = id;
-		let result = await this.client.simplePrice({vs_currencies, ids});
+		let result = await this.client.simplePrice({vs_currencies, ids, x_cg_demo_api_key: this.apiKey});
 		let price = result?.[id]?.usd;
 		if (cutil.isNil(price)) {
 			throw new Error(`Could not get price for '${symbol}'`);
@@ -137,7 +150,7 @@ class CoinGecko extends Obj {
 		let mapIdSymbol = symbols.reduce((map, symbol) => (map[this.getId(symbol)] = symbol, map), {});
 		let vs_currencies = "usd";
 		let ids = Object.keys(mapIdSymbol).join(",");
-		let result = await this.client.simplePrice({vs_currencies, ids});
+		let result = await this.client.simplePrice({vs_currencies, ids, x_cg_demo_api_key: this.apiKey});
 		let prices = Object.keys(mapIdSymbol).reduce((map, id) => (map[mapIdSymbol[id]] = result[id]?.usd || 0, map), {});
 		return prices;
 	}
@@ -147,7 +160,7 @@ class CoinGecko extends Obj {
 		let vs_currency = "usd";
 		let from = cutil.asInteger(new Date(fromDate).getTime() / 1000);
 		let to = cutil.asInteger(new Date(toDate).getTime() / 1000);
-		let {prices: data} = await this.client.coinIdMarketChartRange({id, vs_currency, from, to});
+		let {prices: data} = await this.client.coinIdMarketChartRange({id, vs_currency, from, to, x_cg_demo_api_key: this.apiKey});
 		let axis = new Axis({data});
 		axis.sort();
 		return axis;
