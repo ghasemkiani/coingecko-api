@@ -89,6 +89,7 @@ class CoinGecko extends Obj {
 	}
 	getId(symbol) {
 		symbol = cutil.asString(symbol).toLowerCase();
+		symbol = symbol.replace(/^wh_/i, "");
 		return this.ids[symbol] || symbol;
 	}
 	setId(symbol, id) {
