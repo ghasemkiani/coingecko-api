@@ -51,6 +51,7 @@ class CoinGecko extends Obj {
         luna: "terra-luna-2",
         sol: "solana",
         steem: "steem",
+        sbd: "steem-dollars",
         trx: "tron",
         btt: "bittorrent",
         doge: "dogecoin",
@@ -132,6 +133,11 @@ class CoinGecko extends Obj {
       this.coinList = null;
     }
     await this.toGetIds();
+  }
+  dontUpdate() {
+    this.coinList ||= [];
+    this.coinData ||= {};
+    return this;
   }
   async toReset() {
     this.coinList = null;
