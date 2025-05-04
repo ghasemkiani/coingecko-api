@@ -2,6 +2,10 @@ import { cutil } from "@ghasemkiani/base";
 import { iwcoingecko } from "./iwcoingecko.js";
 
 const iwcoingeckoApp = cutil.extend(iwcoingecko, {
+  defaultPrefsIWCoingeckoApp: {
+    defPrices: {},
+    cgIds: {},
+  },
   _defPrices: iwcoingecko.defPrices,
   get defPrices() {
     return cutil.extend({}, this._defPrices, this?.prefs?.defPrices);
