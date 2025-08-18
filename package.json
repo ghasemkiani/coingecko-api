@@ -1,29 +1,29 @@
 {
-	"name": "@ghasemkiani/coingecko-api",
-	"version": "1.1.5",
-	"description": "Crypto data from CoinGecko",
-	"type": "module",
-	"main": "index.js",
-	"scripts": {
-		"test": "node --test"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/ghasemkiani/coingecko-api.git"
-	},
-	"keywords": [
-		"cryptocurrency",
-		"price"
-	],
-	"author": "Ghasem Kiani",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/ghasemkiani/coingecko-api/issues"
-	},
-	"homepage": "https://github.com/ghasemkiani/coingecko-api#readme",
-	"dependencies": {
-		"@ghasemkiani/base": "github:ghasemkiani/base",
-		"@ghasemkiani/base-utils": "github:ghasemkiani/base-utils",
-		"coingecko-api-v3": "^0.0.29"
-	}
+  "name": "@ghasemkiani/coingecko-api",
+  "version": "1.1.6",
+  "description": "Crypto data from CoinGecko",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ghasemkiani/coingecko-api.git"
+  },
+  "keywords": [
+    "cryptocurrency",
+    "price"
+  ],
+  "author": "Ghasem Kiani",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ghasemkiani/coingecko-api/issues"
+  },
+  "homepage": "https://github.com/ghasemkiani/coingecko-api#readme",
+  "dependencies": {
+    "@ghasemkiani/base": "github:ghasemkiani/base",
+    "@ghasemkiani/base-utils": "github:ghasemkiani/base-utils",
+    "coingecko-api-v3": "^0.0.29"
+  }
 }
