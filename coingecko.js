@@ -197,6 +197,13 @@ class CoinGecko extends Obj {
     axis.sort();
     return axis;
   }
+  async toGetFixedPriceAxis(symbol, fromDate, toDate, price) {
+    let cg = this;
+    let data = [fromDate, toDate].map(time => [time, price]);
+    let axis = new Axis({ data });
+    axis.sort();
+    return axis;
+  }
 }
 
 export { CoinGecko };
